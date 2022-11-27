@@ -4,6 +4,7 @@ Source code of paper: "MultiheadCrossAttention based network model for DTI predi
 ##  Model Overview
   
 <img src="assets/Model_Overview.jpg"  width="800px"  height="400px"  title="Model Overview" >
+
 ##  Dependencies
   
 Quick install: `pip install -r requirements.txt`

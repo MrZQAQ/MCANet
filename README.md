@@ -1,8 +1,5 @@
 #  MCANet
-  
-Source code of paper: "MultiheadCrossAttention based network model for DTI prediction"
-##  Model Overview
-  
+
 <img src="assets/Model_Overview.jpg"  width="800px"  height="400px"  title="Model Overview" >
 
 ##  Dependencies

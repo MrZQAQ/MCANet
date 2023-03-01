@@ -2,7 +2,7 @@
 '''
 Author: MrZQAQ
 Date: 2022-03-29 14:06
-LastEditTime: 2022-11-23 16:58
+LastEditTime: 2023-03-01 22:24
 LastEditors: MrZQAQ
 Description: turely model execute file
 FilePath: /MCANet/RunModel.py
@@ -45,7 +45,7 @@ def run_model(SEED, DATASET, MODEL, K_Fold, LOSS):
     hp = hyperparameter()
 
     '''load dataset from text file'''
-    assert DATASET in ["DrugBank", "KIBA", "Davis"]
+    assert DATASET in ["DrugBank", "KIBA", "Davis", "Enzyme", "GPCRs", "ion_channel"]
     print("Train in " + DATASET)
     print("load data")
     dir_input = ('./DataSets/{}.txt'.format(DATASET))
@@ -54,12 +54,12 @@ def run_model(SEED, DATASET, MODEL, K_Fold, LOSS):
     print("load finished")
 
     '''set loss function weight'''
-    if DATASET == "DrugBank":
-        weight_loss = None
-    elif DATASET == "Davis":
+    if DATASET == "Davis":
         weight_loss = torch.FloatTensor([0.3, 0.7]).to(DEVICE)
     elif DATASET == "KIBA":
         weight_loss = torch.FloatTensor([0.2, 0.8]).to(DEVICE)
+    else:
+        weight_loss = None
 
     '''shuffle data'''
     print("data shuffle")
@@ -253,12 +253,12 @@ def ensemble_run_model(SEED, DATASET, K_Fold):
     print("load finished")
 
     '''set loss function weight'''
-    if DATASET == "DrugBank":
-        weight_loss = None
-    elif DATASET == "Davis":
+    if DATASET == "Davis":
         weight_loss = torch.FloatTensor([0.3, 0.7]).to(DEVICE)
     elif DATASET == "KIBA":
         weight_loss = torch.FloatTensor([0.2, 0.8]).to(DEVICE)
+    else:
+        weight_loss = None
 
     '''shuffle data'''
     print("data shuffle")

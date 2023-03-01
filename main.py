@@ -2,7 +2,7 @@
 '''
 Author: MrZQAQ
 Date: 2022-03-26 19:15
-LastEditTime: 2022-11-23 16:02
+LastEditTime: 2023-03-01 22:25
 LastEditors: MrZQAQ
 Description: main file of project
 FilePath: /MCANet/main.py
@@ -19,7 +19,7 @@ parser = argparse.ArgumentParser(
     epilog='Model config set by config.py')
 
 parser.add_argument('dataSetName', choices=[
-                    'DrugBank', 'Davis', 'KIBA'], help='Enter which dataset to use for the experiment')
+                    "DrugBank", "KIBA", "Davis", "Enzyme", "GPCRs", "ion_channel"], help='Enter which dataset to use for the experiment')
 parser.add_argument('-m', '--model', choices=['MCANet', 'MCANet-B', 'onlyPolyLoss', 'onlyMCA'],
                     default='MCANet', help='Which model to use, \"MCANet\" is used by default')
 parser.add_argument('-s', '--seed', type=int, default=114514,

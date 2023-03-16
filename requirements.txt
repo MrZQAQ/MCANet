@@ -1,6 +1,6 @@
 torch >=1.2
 numpy
-sklearn
+scikit-learn
 tqdm
 tensorboardX
 prefetch_generator

@@ -53,13 +53,13 @@ def test_precess(MODEL, pbar, LOSS, DEVICE, FOLD_NUM):
             S.extend(predicted_scores)
             test_losses.append(loss.item())
     Precision = precision_score(Y, P)
-    Reacll = recall_score(Y, P)
+    Recall = recall_score(Y, P)
     AUC = roc_auc_score(Y, S)
     tpr, fpr, _ = precision_recall_curve(Y, S)
     PRC = auc(fpr, tpr)
     Accuracy = accuracy_score(Y, P)
     test_loss = np.average(test_losses)
-    return Y, P, test_loss, Accuracy, Precision, Reacll, AUC, PRC
+    return Y, P, test_loss, Accuracy, Precision, Recall, AUC, PRC
 
 
 def test_model(MODEL, dataset_loader, save_path, DATASET, LOSS, DEVICE, dataset_class="Train", save=True, FOLD_NUM=1):

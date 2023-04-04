@@ -132,23 +132,23 @@ def run_model(SEED, DATASET, MODEL, K_Fold, LOSS):
         for epoch in range(1, hp.Epoch + 1):
             if early_stopping.early_stop == True:
                 break
-            trian_pbar = tqdm(
+            train_pbar = tqdm(
                 enumerate(BackgroundGenerator(train_dataset_loader)),
                 total=len(train_dataset_loader))
 
             """train"""
             train_losses_in_epoch = []
             model.train()
-            for trian_i, train_data in trian_pbar:
-                trian_compounds, trian_proteins, trian_labels = train_data
-                trian_compounds = trian_compounds.to(DEVICE)
-                trian_proteins = trian_proteins.to(DEVICE)
-                trian_labels = trian_labels.to(DEVICE)
+            for train_i, train_data in train_pbar:
+                train_compounds, train_proteins, train_labels = train_data
+                train_compounds = train_compounds.to(DEVICE)
+                train_proteins = train_proteins.to(DEVICE)
+                train_labels = train_labels.to(DEVICE)
 
                 optimizer.zero_grad()
 
-                predicted_interaction = model(trian_compounds, trian_proteins)
-                train_loss = Loss(predicted_interaction, trian_labels)
+                predicted_interaction = model(train_compounds, train_proteins)
+                train_loss = Loss(predicted_interaction, train_labels)
                 train_losses_in_epoch.append(train_loss.item())
                 train_loss.backward()
                 optimizer.step()

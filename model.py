@@ -20,16 +20,16 @@ class MCANet(nn.Module):
         super(MCANet, self).__init__()
         self.dim = hp.char_dim
         self.conv = hp.conv
-        self.drug_MAX_LENGH = drug_MAX_LENGH
+        self.drug_MAX_LENGTH = drug_MAX_LENGH
         self.drug_kernel = hp.drug_kernel
-        self.protein_MAX_LENGH = protein_MAX_LENGH
+        self.protein_MAX_LENGTH = protein_MAX_LENGH
         self.protein_kernel = hp.protein_kernel
         self.drug_vocab_size = 65
         self.protein_vocab_size = 26
         self.attention_dim = hp.conv * 4
-        self.durg_dim_afterCNNs = self.drug_MAX_LENGH - \
+        self.drug_dim_afterCNNs = self.drug_MAX_LENGTH - \
             self.drug_kernel[0] - self.drug_kernel[1] - self.drug_kernel[2] + 3
-        self.protein_dim_afterCNNs = self.protein_MAX_LENGH - \
+        self.protein_dim_afterCNNs = self.protein_MAX_LENGTH - \
             self.protein_kernel[0] - self.protein_kernel[1] - \
             self.protein_kernel[2] + 3
         self.drug_attention_head = 5
@@ -52,7 +52,7 @@ class MCANet(nn.Module):
                       kernel_size=self.drug_kernel[2]),
             nn.ReLU(),
         )
-        self.Drug_max_pool = nn.MaxPool1d(self.durg_dim_afterCNNs)
+        self.Drug_max_pool = nn.MaxPool1d(self.drug_dim_afterCNNs)
         self.Protein_CNNs = nn.Sequential(
             nn.Conv1d(in_channels=self.dim, out_channels=self.conv,
                       kernel_size=self.protein_kernel[0]),
